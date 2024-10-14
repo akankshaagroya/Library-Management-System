@@ -17,6 +17,10 @@ public class Book implements Serializable {
         return title;
     }
 
+    public String getAuthor() {
+        return author;
+    }
+
     public int getQuantityAvailable() {
         return quantityAvailable;
     }
@@ -31,5 +35,10 @@ public class Book implements Serializable {
 
     public void returnBook() {
         quantityAvailable++;
+    }
+
+    @Override
+    public String toString() {
+        return title + " by " + author + " - " + quantityAvailable + " copies available";
     }
 }

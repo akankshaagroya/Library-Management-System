@@ -15,15 +15,24 @@ public class User implements Serializable {
         this.issuedBooks = new ArrayList<>();
     }
 
-    public void issueBook(Book book) {
-        issuedBooks.add(book);
-    }
-
     public String getName() {
         return name;
     }
 
+    public int getId() {
+        return id; // Added this method for easier access to user ID
+    }
+
+    public void issueBook(Book book) {
+        issuedBooks.add(book);
+    }
+
     public List<Book> getIssuedBooks() {
         return issuedBooks;
+    }
+
+    @Override
+    public String toString() {
+        return name + " (ID: " + id + ")";
     }
 }

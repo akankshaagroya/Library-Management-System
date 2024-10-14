@@ -29,6 +29,15 @@ public class Library implements Serializable {
         return users;
     }
 
+    public User getUserById(int id) {
+        for (User user : users) {
+            if (user.getId() == id) {
+                return user;
+            }
+        }
+        return null; // User not found
+    }
+
     public void saveToFile(String filename) throws IOException {
         ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(filename));
         out.writeObject(this);
