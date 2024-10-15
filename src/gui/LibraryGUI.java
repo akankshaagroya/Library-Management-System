@@ -1,3 +1,4 @@
+
 package src.gui;
 
 import src.models.Book;
@@ -13,10 +14,31 @@ public class LibraryGUI extends JFrame {
     public LibraryGUI(Library library) {
         // Set up the GUI
         setTitle("Library Management System");
-        setSize(700, 200);
+        setSize(500, 300);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setLayout(new FlowLayout());
+        setLayout(new BorderLayout());
 
+        // Load and scale background image
+        ImageIcon backgroundImage = new ImageIcon("./images/pexels-technobulka-2908984.jpg");
+        Image scaledImage = backgroundImage.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_SMOOTH);
+        JLabel background = new JLabel(new ImageIcon(scaledImage));
+        background.setLayout(new BorderLayout());
+        add(background);
+
+        // Add a component listener to dynamically resize the background if the window size changes
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentResized(java.awt.event.ComponentEvent evt) {
+                Image scaledResizedImage = backgroundImage.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_SMOOTH);
+                background.setIcon(new ImageIcon(scaledResizedImage));
+            }
+        });
+
+        // Panel for buttons
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridLayout(6, 1, 10, 3)); // 6 rows, 1 column, vertical spacing
+        buttonPanel.setOpaque(false); // Make the panel transparent
+
+        // Create buttons
         JButton addUserButton = new JButton("Add User");
         JButton addBookButton = new JButton("Add Book");
         JButton issueBookButton = new JButton("Issue Book");
@@ -24,12 +46,16 @@ public class LibraryGUI extends JFrame {
         JButton viewBooksButton = new JButton("View Books");
         JButton viewUsersButton = new JButton("View Users");
 
-        add(addUserButton);
-        add(addBookButton);
-        add(issueBookButton);
-        add(returnBookButton);
-        add(viewBooksButton);
-        add(viewUsersButton);
+        // Add buttons to the panel
+        buttonPanel.add(addUserButton);
+        buttonPanel.add(addBookButton);
+        buttonPanel.add(issueBookButton);
+        buttonPanel.add(returnBookButton);
+        buttonPanel.add(viewBooksButton);
+        buttonPanel.add(viewUsersButton);
+
+        // Add button panel to the left side
+        background.add(buttonPanel, BorderLayout.WEST);
 
         // Action listener for adding a user
         addUserButton.addActionListener(new ActionListener() {
