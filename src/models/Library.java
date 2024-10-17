@@ -1,10 +1,9 @@
 package src.models;
 
-import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Library implements Serializable {
+public class Library {
     private List<Book> books;
     private List<User> users;
 
@@ -35,19 +34,6 @@ public class Library implements Serializable {
                 return user;
             }
         }
-        return null; // User not found
-    }
-
-    public void saveToFile(String filename) throws IOException {
-        ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(filename));
-        out.writeObject(this);
-        out.close();
-    }
-
-    public static Library loadFromFile(String filename) throws IOException, ClassNotFoundException {
-        ObjectInputStream in = new ObjectInputStream(new FileInputStream(filename));
-        Library library = (Library) in.readObject();
-        in.close();
-        return library;
+        return null;
     }
 }

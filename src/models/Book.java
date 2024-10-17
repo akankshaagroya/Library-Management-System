@@ -1,8 +1,6 @@
 package src.models;
 
-import java.io.Serializable;
-
-public class Book implements Serializable {
+public class Book {
     private String title;
     private String author;
     private int quantityAvailable;
@@ -28,8 +26,6 @@ public class Book implements Serializable {
     public void issue() {
         if (quantityAvailable > 0) {
             quantityAvailable--;
-        } else {
-            System.out.println("No copies available!");
         }
     }
 
